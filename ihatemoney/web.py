@@ -64,7 +64,7 @@ from ihatemoney.utils import (
     limiter,
     list_of_dicts2csv,
     list_of_dicts2json,
-    render_localized_template,
+    # render_localized_template,
     send_email,
 )
 
