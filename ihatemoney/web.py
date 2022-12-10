@@ -794,7 +794,11 @@ def change_lang(lang):
         session["lang"] = lang
         session.update()
     else:
-        flash(_(f"{lang} is not a supported language"), category="warning")
+        flash(
+            # .format needed for pybabel https://github.com/python-babel/babel/issues/715
+            _("{lang} is not a supported language").format(lang=lang),
+            category="warning",
+        )
 
     return redirect(request.headers.get("Referer") or url_for(".home"))
 
