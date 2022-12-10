@@ -63,7 +63,6 @@ from ihatemoney.utils import (
     format_form_errors,
     list_of_dicts2csv,
     list_of_dicts2json,
-    render_localized_template,
     send_email,
 )
 
@@ -353,7 +352,7 @@ def remind_password():
             # send a link to reset the password
             remind_message = Message(
                 "password recovery",
-                body=render_localized_template("password_reminder", project=project),
+                body=render_template("password_reminder.j2", project=project),
                 recipients=[project.contact_email],
             )
             success = send_email(remind_message)
@@ -582,7 +581,7 @@ def invite():
     if request.method == "POST":
         if form.validate():
             # send the email
-            message_body = render_localized_template("invitation_mail")
+            message_body = render_template("invitation_mail.j2")
             message_title = _(
                 "You have been invited to share your " "expenses for %(project)s",
                 project=g.project.name,

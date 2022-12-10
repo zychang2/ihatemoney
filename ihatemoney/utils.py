@@ -444,20 +444,6 @@ def render_localized_currency(code, detailed=True):
         return f"{code} − {symbol}{details}"
 
 
-def render_localized_template(template_name_prefix, **context):
-    """Like render_template(), but selects the right template according to the
-    current user language.  Fallback to English if a template for the
-    current language does not exist.
-    """
-    fallback = "en"
-    templates = [
-        f"{template_name_prefix}.{lang}.j2"
-        for lang in (get_locale().language, fallback)
-    ]
-    # render_template() supports a list of templates to try in order
-    return render_template(templates, **context)
-
-
 def format_form_errors(form, prefix):
     """Format all form errors into a single string, with a string prefix in
     front.  Useful for flashing the result.
